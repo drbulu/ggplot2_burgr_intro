@@ -24,7 +24,8 @@ Creating ggplot objects: There are three main ways
 
 Quote directly out of help! ?ggplot
 
-```{r, eval=FALSE}
+
+```r
 # recommended option
 ggplot(dataFrame, aes(x, y, <other aesthetics>))
 
@@ -49,7 +50,8 @@ Will be playing with a simple dataset "women", which comes with the base (standa
 
 Geom_Wanted!
 
-```{r }
+
+```r
 require(ggplot2) # load ggplot2. same as library(ggplot2)
 data(women) # load data
 
@@ -65,9 +67,12 @@ Note: ggplot2 allows for iterative building of complex graphics via the &#10133;
 
 ## The result
 
-```{r}
+
+```r
 myPlot
 ```
+
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png)
 
 Note: This is the result with Geom
 
@@ -77,10 +82,13 @@ Note: This is the result with Geom
 
 These 
 
-```{r, eval = T, fig.height=3}
+
+```r
 # ggplot(women) + aes(height, weight) + geom_line()
 ggplot(women) + geom_line(mapping = aes(height, weight))
 ```
+
+![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png)
 
 Takehome: There is quite a bit of flexibility in ggplot2 oject creation.  
 
@@ -92,19 +100,22 @@ Takehome: There is quite a bit of flexibility in ggplot2 oject creation.
 
 Changing the Geom 
 
-```{r}
+
+```r
 # briefly explain "stat" aesthetic (i think it is an aesthetic)
 myBarplot = ggplot(women, aes(height, weight)) + geom_bar(stat="identity")
 myBarplot
-
 ```
+
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png)
 
 
 --- .class #id
 
 ## Combining Geoms
 
-```{r}
+
+```r
 # briefly explain "stat" aesthetic (i think it is an aesthetic)
 myCustomPlot = ggplot(women, aes(height, weight)) + 
     geom_bar(stat="identity", color="blue", fill="yellow", size=2) + 
@@ -116,9 +127,12 @@ myCustomPlot = ggplot(women, aes(height, weight)) +
 
 ## Behold! The combo plot
 
-```{r}
+
+```r
 myCustomPlot # or you can use: plot(myCustomPlot) or print(myCustomPlot)
 ```
+
+![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png)
 
 --- .class #id
 
@@ -127,12 +141,24 @@ myCustomPlot # or you can use: plot(myCustomPlot) or print(myCustomPlot)
 
 Why use require() over library()?
 
-```{r}
+
+```r
 # option A
 isLoadedByLibrary = library(ggplot2); isLoadedByLibrary
+```
 
+```
+## [1] "ggplot2"   "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+## [7] "methods"   "base"
+```
+
+```r
 # option B
 isLoadedByRequire = require(ggplot2); isLoadedByRequire
+```
+
+```
+## [1] TRUE
 ```
 
 <b style="color:red;"> Takehome</b>: require can be used in control flow (e.g. dependency checking)
