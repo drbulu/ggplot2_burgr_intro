@@ -43,16 +43,16 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Intro Slide</h2>
+    <h2>Overview</h2>
   </hgroup>
   <article data-timings="">
-    <p>Overview slide with presentation aims</p>
+    <p>Presentation aims:</p>
 
-<p>Get you up and running with ggplot2</p>
-
-<p>Get you confortable with ggplot2</p>
-
-<p>Get you wanting to explore more</p>
+<ol>
+<li><p>Noobz: Get you up and running with ggplot2</p></li>
+<li><p>Mid: Get you confortable with ggplot2</p></li>
+<li><p>Pro: Get you wanting to explore more</p></li>
+</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -60,26 +60,23 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Noob 1: Setup - Geoms wanted!</h2>
+    <h2>Noobz 1: Setup - Geoms wanted!</h2>
   </hgroup>
   <article data-timings="">
-    <p>Intro to ggplot2 with a simple dataset &quot;women&quot;, which comes with the base (standard) R setup</p>
+    <p>Aim of this section: creating pretty plots!<br>
+Intro to ggplot2 with a simple dataset &quot;women&quot;, which comes with the base (standard) R setup</p>
 
 <pre><code class="r"># load ggplot2, then load data: 2 for 1 line special! 
 library(ggplot2); data(women) 
-
 ## 1) will produce blank plot... no geom specified!
 myBlankPlot = ggplot(women, aes(height, weight)) # recommended
 myBlankPlot2 = ggplot(women) # contains data only
 myBlankPlot3 = ggplot() # &quot;empty&quot; object
-
 # 2) will produce basic line graph via geom_line()
 myPlot = ggplot(women, aes(height, weight)) + geom_line()
 </code></pre>
 
-<p>See <b>?ggplot</b> for more detail  </p>
-
-<p><b style="color:red">Note:</b> ggplot2 enables iterative building of complex graphics in <b style="color:blue;">layers</b> via <span style="color:red;">&#10133;</span> (plus) operator  </p>
+<p><b style="color:red">Note:</b> ggplot2 enables iterative building of complex graphics in <b style="color:blue;">layers</b> via <span style="color:red;">&#10133;</span> (plus) operator. See <b>?ggplot</b> for more detail.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -87,7 +84,7 @@ myPlot = ggplot(women, aes(height, weight)) + geom_line()
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Noob 2: our first result!</h2>
+    <h2>Noobz 2: our first result!</h2>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">myPlot # or you can use: plot(myPlot) or print(myPlot)
@@ -101,7 +98,7 @@ myPlot = ggplot(women, aes(height, weight)) + geom_line()
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Noob 3: alternative plot setup</h2>
+    <h2>Noobz 3: alternative plot setup</h2>
   </hgroup>
   <article data-timings="">
     <p>These variations will produce the same output as myPlot (so one is not pondering the &quot;right&quot; way to setup plots)</p>
@@ -109,7 +106,6 @@ myPlot = ggplot(women, aes(height, weight)) + geom_line()
 <p>This can be very useful when constructing complex plots or working with functions (<b>control flow!</b>)</p>
 
 <pre><code class="r"># These variants will all work... try them out!
-
 ggplot(women) + aes(height, weight) + geom_line()
 ggplot(women) + geom_line(mapping = aes(height, weight))
 ggplot() + geom_line(data = women, mapping = aes(height, weight))
@@ -128,7 +124,7 @@ ggplot() + aes(height, weight) + geom_line(data = women)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Noob 4: Aesthetics Geoms?</h2>
+    <h2>Noobz 4: Aesthetics Geoms?</h2>
   </hgroup>
   <article data-timings="">
     <p><b>Aesthetics:</b> define visual or other attributes of ggplot objects</p>
@@ -138,7 +134,7 @@ ggplot() + aes(height, weight) + geom_line(data = women)
 <li>Examples aesthetics: colour, point type, point size, line size...</li>
 </ul>
 
-<p><b>Geoms:</b> aka &quot;geometrics objects&quot;&quot;</p>
+<p><b>Geoms:</b> aka &quot;geometrics objects&quot;</p>
 
 <ul>
 <li>define the type of the plot produced</li>
@@ -160,7 +156,7 @@ ggplot() + aes(height, weight) + geom_line(data = women)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Noob 5: Behold... the combo plot!</h2>
+    <h2>Noobz 5: Behold... the combo plot!</h2>
   </hgroup>
   <article data-timings="">
     <pre><code class="r"># Examples: one plot... 3 geoms... many aesthetics!
@@ -179,7 +175,7 @@ myCustomPlot # note draw order: layers stacked from bottom to top!!
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Noob 6: Labels anyone?</h2>
+    <h2>Noobz 6: Labels anyone?</h2>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">myCustomPlot = myCustomPlot + labs(x = &quot;female height&quot;, y = &quot;female weight&quot;, 
@@ -192,18 +188,17 @@ myCustomPlot # or you can use: plot(myCustomPlot) or print(myCustomPlot)
 <p>Reference: <a href="http://docs.ggplot2.org/current/labs.html">http://docs.ggplot2.org/current/labs.html</a><br>
 <b style="color:red;">Note:</b> another example of ggplot2 <b>iterative</b> plot building.</p>
 
-<p>See <b>?ggplot</b> for more detail  </p>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Mid 1: This makes no sense?</h2>
+    <h2>Mid 1: More useful features but...</h2>
   </hgroup>
   <article data-timings="">
-    <p>Welcome to iris! A slightly more complex dataset (also available in base R)</p>
+    <p class='..'>this makes no sense?<br>
+Welcome to &quot;iris&quot;! A slightly more complex dataset (also available in base R)</p>
 
 <pre><code class="r">data(iris) # seriously... this is almost there but not quite..
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
@@ -238,10 +233,10 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) +
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Mid 3: Another way of wrapping it?</h2>
+    <h2>Mid 3: Another way to wrap it up?</h2>
   </hgroup>
   <article data-timings="">
-    <p>Facets anyone?</p>
+    <p>Wrap gives nice control over facet rows and columns!</p>
 
 <pre><code class="r"># facet_wrap() call&#39;s formula: as above, but no dot (go figure)
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
@@ -263,8 +258,9 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) +
   <article data-timings="">
     <p>simple linear model application via <b style="color:red;">geom_smooth()</b>!</p>
 
-<pre><code class="r">ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
+<pre><code class="r">myLmPlot = ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
     facet_wrap(~ Species, ncol=2) + geom_smooth(method=&quot;lm&quot;, se = FALSE) 
+myLmPlot
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
@@ -281,7 +277,21 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) +
     <h2>Mid 5: What&#39;s my, What&#39;s my THEME!</h2>
   </hgroup>
   <article data-timings="">
-    <p>Reference: <a href="http://docs.ggplot2.org/current/theme.html">http://docs.ggplot2.org/current/theme.html</a><br>
+    <p>Themes... are basically the CSS of ggplot2 (absolute POWER!)</p>
+
+<pre><code class="r">simplePlotTheme = theme( # plot title formatting
+                    plot.title = element_text(size = 12, colour = &quot;red&quot;),
+                    # plot background: neatened up via element_blank()
+                    panel.background = element_blank(),
+                    # legend modifications
+                    legend.position = &quot;top&quot;,
+                    legend.title = element_text(size = rel(1.5)),
+                    legend.text = element_text(size = rel(1.2)))
+# Note: sizes can be relative or absolute as contrasted above!
+myLmPlot = myLmPlot + simplePlotTheme #Apply theme
+</code></pre>
+
+<p>Reference: <a href="http://docs.ggplot2.org/current/theme.html">http://docs.ggplot2.org/current/theme.html</a><br>
 <b style="color:red;">More</b> on themes: <a href="https://www.r-bloggers.com/ggplot2-themes-examples/">https://www.r-bloggers.com/ggplot2-themes-examples/</a></p>
 
   </article>
@@ -293,32 +303,33 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) +
     <h2>Mid 6: That&#39;s my THEME!</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p><img src="assets/fig/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Mid X: Moo!</h2>
+    <h2>Pro 1: Working with lists</h2>
   </hgroup>
   <article data-timings="">
-    <p>Introducing cowplot</p>
+    <p>For finer plot control and greater flexibility than <b>facet</b>.</p>
 
-<pre><code class="r"># facet_wrap() call&#39;s formula: as above, but no dot (go figure)
-plot_grid
+<pre><code class="r"># create base plot: note the placement of color aesthetic!
+myIrisPlot = ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) + geom_point()
+
+# create list of plots (plotList)
+irisPlotList = list()
+irisPlotList[[&quot;points&quot;]] = myIrisPlot
+irisPlotList[[&quot;line&quot;]] = myIrisPlot + geom_line()
+irisPlotList[[&quot;lm&quot;]] = myIrisPlot + geom_smooth(method = &quot;lm&quot;, se=FALSE)
+# content check
+names(irisPlotList)
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;plot_grid&#39; not found
+<pre><code>## [1] &quot;points&quot; &quot;line&quot;   &quot;lm&quot;
 </code></pre>
-
-<pre><code class="r">ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
-    geom_line() + facet_wrap(~ Species, ncol=2)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /></p>
-
-<p>Reference: <a href="http://docs.ggplot2.org/current/facet_wrap.html">http://docs.ggplot2.org/current/facet_wrap.html</a></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -326,27 +337,70 @@ plot_grid
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Mid 1: Groups you say</h2>
+    <h2>Pro 2: Moo - Cowplot</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>The lazy man&#39;s way to pretty plot list organisation</p>
+
+<pre><code class="r">library(cowplot) # note: masks some ggplot2 functions when loaded
+plot_grid(plotlist = irisPlotList, labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), nrow=1)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+For more see:<br>
+<a href="https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html">https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html</a></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Mid 1: Groups you say</h2>
+    <h2>Pro 3: functional plots 1</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>This is a reasonably simple function to aid list handling.<br>
+Note: you can make hideously complicated funcions... it can be worth it, but &quot;caveat emptor&quot;!<br>
+gridExtra is a package worth exploring for the adventurous:<br>
+<a href="https://cran.r-project.org/web/packages/gridExtra/index.html">https://cran.r-project.org/web/packages/gridExtra/index.html</a>  </p>
+
+<pre><code class="r">applyThemesToPlots = function(plotList, themeList){
+    errorMsg = &quot;The list of plots and the list of themes MUST be the same length!&quot;
+    if (length(plotList) != length(themeList)) stop(errorMsg)
+    for(i in 1:length(plotList)) plotList[[i]] = plotList[[i]] + themeList[[i]]
+    return(plotList)
+}
+# incidentally: you can use lapply() to quickly apply ONE theme to MANY plots
+# you can even wrap this in a basic function &quot;shell&quot; for convenience.
+sameTheme = lapply(irisPlotList, FUN = function(x, t) return(x + t), 
+                   t = simplePlotTheme)
+</code></pre>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Geek note: library vs require?</h2>
+    <h2>Pro 4: functional plots 2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The results!</p>
+
+<pre><code class="r">miscThemeList = list(theme_minimal(), theme_dark(), simplePlotTheme)
+themedIrisPlotList = applyThemesToPlots(plotList = irisPlotList, themeList = miscThemeList)
+plot_grid(plotlist = themedIrisPlotList, labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), nrow=1)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Pro 5: library vs require?</h2>
   </hgroup>
   <article data-timings="">
     <p>Why use require() over library()?</p>
@@ -354,8 +408,8 @@ plot_grid
 <pre><code class="r">isLoadedByLibrary = library(ggplot2); isLoadedByLibrary
 </code></pre>
 
-<pre><code>## [1] &quot;ggplot2&quot;   &quot;stats&quot;     &quot;graphics&quot;  &quot;grDevices&quot; &quot;utils&quot;     &quot;datasets&quot; 
-## [7] &quot;methods&quot;   &quot;base&quot;
+<pre><code>##  [1] &quot;gridExtra&quot; &quot;cowplot&quot;   &quot;ggplot2&quot;   &quot;stats&quot;     &quot;graphics&quot; 
+##  [6] &quot;grDevices&quot; &quot;utils&quot;     &quot;datasets&quot;  &quot;methods&quot;   &quot;base&quot;
 </code></pre>
 
 <pre><code class="r">isLoadedByRequire = require(ggplot2); isLoadedByRequire
@@ -364,7 +418,7 @@ plot_grid
 <pre><code>## [1] TRUE
 </code></pre>
 
-<p><b style="color:red;"> Takehome</b>: require can be used in control flow (e.g. dependency checking)</p>
+<p><b style="color:red;"> Takehome</b>: require can be used in control flow (e.g. dependency checking) in functions and other situations</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -372,29 +426,28 @@ plot_grid
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 4</h2>
+    <h2>Conclusion</h2>
   </hgroup>
   <article data-timings="">
-    <p>Slide content check!</p>
+    <p>Remember: ggplot plots are objects (lists) that contain the data required to plot them... therefore include only the data that you need!</p>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+<pre><code class="r">names(myIrisPlot)
+</code></pre>
 
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Slide 5</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Slide 5</p>
+<pre><code>## [1] &quot;data&quot;        &quot;layers&quot;      &quot;scales&quot;      &quot;mapping&quot;     &quot;theme&quot;      
+## [6] &quot;coordinates&quot; &quot;facet&quot;       &quot;plot_env&quot;    &quot;labels&quot;
+</code></pre>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+<pre><code class="r">head(myIrisPlot$data, 2)
+</code></pre>
 
-<slide class="class" id="id" style="background:;">
-  <article data-timings="">
-    
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+</code></pre>
+
+<p><b style="color:red;">Note:</b> This also means that you can extract information from plots for &quot;downstream applications&quot;.</p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -405,49 +458,49 @@ plot_grid
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Intro Slide'>
+        data-slide=1 title='Overview'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Noob 1: Setup - Geoms wanted!'>
+        data-slide=2 title='Noobz 1: Setup - Geoms wanted!'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Noob 2: our first result!'>
+        data-slide=3 title='Noobz 2: our first result!'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Noob 3: alternative plot setup'>
+        data-slide=4 title='Noobz 3: alternative plot setup'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Noob 4: Aesthetics Geoms?'>
+        data-slide=5 title='Noobz 4: Aesthetics Geoms?'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Noob 5: Behold... the combo plot!'>
+        data-slide=6 title='Noobz 5: Behold... the combo plot!'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Noob 6: Labels anyone?'>
+        data-slide=7 title='Noobz 6: Labels anyone?'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Mid 1: This makes no sense?'>
+        data-slide=8 title='Mid 1: More useful features but...'>
          8
       </a>
     </li>
@@ -459,7 +512,7 @@ plot_grid
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Mid 3: Another way of wrapping it?'>
+        data-slide=10 title='Mid 3: Another way to wrap it up?'>
          10
       </a>
     </li>
@@ -483,44 +536,38 @@ plot_grid
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Mid X: Moo!'>
+        data-slide=14 title='Pro 1: Working with lists'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Mid 1: Groups you say'>
+        data-slide=15 title='Pro 2: Moo - Cowplot'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Mid 1: Groups you say'>
+        data-slide=16 title='Pro 3: functional plots 1'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Geek note: library vs require?'>
+        data-slide=17 title='Pro 4: functional plots 2'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Slide 4'>
+        data-slide=18 title='Pro 5: library vs require?'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Slide 5'>
+        data-slide=19 title='Conclusion'>
          19
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='NA'>
-         20
       </a>
     </li>
   </ul>
