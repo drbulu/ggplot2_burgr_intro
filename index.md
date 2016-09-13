@@ -16,123 +16,239 @@ knit        : slidify::knit2slides
 
 Overview slide with presentation aims
 
+Get you up and running with ggplot2
+
+Get you confortable with ggplot2
+
+Get you wanting to explore more
+
 --- .class #id 
 
-## Beginner's Section 0
+## Noob 1: Setup - Geoms wanted!
 
-Creating ggplot objects: There are three main ways
-
-Quote directly out of help! ?ggplot
+Intro to ggplot2 with a simple dataset "women", which comes with the base (standard) R setup
 
 
 ```r
-# recommended option
-ggplot(dataFrame, aes(x, y, <other aesthetics>))
+# load ggplot2, then load data: 2 for 1 line special! 
+library(ggplot2); data(women) 
 
-# other options 
-ggplot(dataFrame)
-ggplot()
-```
+## 1) will produce blank plot... no geom specified!
+myBlankPlot = ggplot(women, aes(height, weight)) # recommended
+myBlankPlot2 = ggplot(women) # contains data only
+myBlankPlot3 = ggplot() # "empty" object
 
-see <b>?ggplot</b> for more :)
-
-NOTE: Can call directly or assign to variable  
-
-NOTE: None of these will produce a plot... further instruction required
-
-Brief note: Aesthetics.. e.g. colour, point type, point size, line size
-
---- .class #id
-
-## Beginner's Section 1 - Example
-
-Will be playing with a simple dataset "women", which comes with the base (standard) R setup
-
-Geom_Wanted!
-
-
-```r
-require(ggplot2) # load ggplot2. same as library(ggplot2)
-data(women) # load data
-
-# will produce blank plot - no geom specified
-myPlot = ggplot(women, aes(height, weight))
-# will produce basic line graph
+# 2) will produce basic line graph via geom_line()
 myPlot = ggplot(women, aes(height, weight)) + geom_line()
 ```
+See <b>?ggplot</b> for more detail  
 
-Note: ggplot2 allows for iterative building of complex graphics via the &#10133; (plus) operator
+<b style="color:red">Note:</b> ggplot2 enables iterative building of complex graphics in <b style="color:blue;">layers</b> via <span style="color:red;">&#10133;</span> (plus) operator  
 
 --- .class #id
 
-## The result
+## Noob 2: our first result!
 
 
 ```r
-myPlot
+myPlot # or you can use: plot(myPlot) or print(myPlot)
 ```
 
-![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png)
-
-Note: This is the result with Geom
+<img src="assets/fig/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 --- .class #id
 
-## These will also work
+## Noob 3: alternative plot setup
 
-These 
+These variations will produce the same output as myPlot (so one is not pondering the "right" way to setup plots)
+
+This can be very useful when constructing complex plots or working with functions (<b>control flow!</b>)
 
 
 ```r
-# ggplot(women) + aes(height, weight) + geom_line()
+# These variants will all work... try them out!
+
+ggplot(women) + aes(height, weight) + geom_line()
 ggplot(women) + geom_line(mapping = aes(height, weight))
+ggplot() + geom_line(data = women, mapping = aes(height, weight))
+ggplot() + geom_line(data = women) + aes(height, weight)
+
+#odd.. but makes sense
+ggplot() + aes(height, weight) + geom_line(data = women) 
 ```
 
-![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png)
-
-Takehome: There is quite a bit of flexibility in ggplot2 oject creation.  
-
-<b>Caveat emptor!</b>
+<br/>
+<b style="color:red">Takehome:</b> There is quite a bit of flexibility in ggplot2 oject creation. 
 
 --- .class #id
 
-## Barplots?
+## Noob 4: Aesthetics Geoms?
+<b>Aesthetics:</b> define visual or other attributes of ggplot objects
+* Can be specified as an argument to either <code class="r">aes()</code> or to the <b>geom</b> to be modified.
+* Examples aesthetics: colour, point type, point size, line size...
 
-Changing the Geom 
+<b>Geoms:</b> aka "geometrics objects""
+* define the type of the plot produced
+* There are soo many geoms
 
-
-```r
-# briefly explain "stat" aesthetic (i think it is an aesthetic)
-myBarplot = ggplot(women, aes(height, weight)) + geom_bar(stat="identity")
-myBarplot
-```
-
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png)
-
+<b style="color:red">Note:</b>  
+* these may mean different things to different geoms  
+* some geoms may not accept certain aesthetics   
+* these are good concepts to understand via "dirty hands"!  
+* Useful reference: http://docs.ggplot2.org/current/index.html  
 
 --- .class #id
 
-## Combining Geoms
-
+## Noob 5: Behold... the combo plot!
 
 ```r
-# briefly explain "stat" aesthetic (i think it is an aesthetic)
+# Examples: one plot... 3 geoms... many aesthetics!
 myCustomPlot = ggplot(women, aes(height, weight)) + 
     geom_bar(stat="identity", color="blue", fill="yellow", size=2) + 
-    geom_line(color="red", size = 1.5) + 
-    geom_point(color = "green", size = 4)
+    geom_line(color="red", size = 1.5) + geom_point(color = "green", size = 4)
+myCustomPlot # note draw order: layers stacked from bottom to top!!
 ```
+
+<img src="assets/fig/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<b style="color:red;">Note:</b> stat="identity" means no stat stansformations (plot values as is)
 
 --- .class #id
 
-## Behold! The combo plot
+## Noob 6: Labels anyone?
 
 
 ```r
+myCustomPlot = myCustomPlot + labs(x = "female height", y = "female weight", 
+                                   title = "women: height vs. weight")
 myCustomPlot # or you can use: plot(myCustomPlot) or print(myCustomPlot)
 ```
 
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png)
+<img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+
+Reference: http://docs.ggplot2.org/current/labs.html  
+<b style="color:red;">Note:</b> another example of ggplot2 <b>iterative</b> plot building.
+
+See <b>?ggplot</b> for more detail  
+
+--- .class #id
+
+## Mid 1: This makes no sense?
+
+Welcome to iris! A slightly more complex dataset (also available in base R)
+
+
+```r
+data(iris) # seriously... this is almost there but not quite..
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
+    geom_line(aes(color=Species))
+```
+
+<img src="assets/fig/r-1.png" title="plot of chunk r" alt="plot of chunk r" style="display: block; margin: auto;" />
+
+--- .class #id
+
+## Mid 2: This makes more sense
+
+Facets anyone?
+
+
+```r
+# facet_grid() call's formula: separate all data (.) according to "Species" variable
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
+    geom_line(aes(color=Species)) + facet_grid(. ~ Species)
+```
+
+<img src="assets/fig/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+
+Reference: http://docs.ggplot2.org/current/facet_grid.html
+
+--- .class #id
+
+## Mid 3: Another way of wrapping it?
+
+Facets anyone?
+
+
+```r
+# facet_wrap() call's formula: as above, but no dot (go figure)
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
+    geom_line() + facet_wrap(~ Species, ncol=2)
+```
+
+<img src="assets/fig/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+Reference: http://docs.ggplot2.org/current/facet_wrap.html
+
+--- .class #id
+
+## Mid 4: The model citizen!
+
+simple linear model application via <b style="color:red;">geom_smooth()</b>!
+
+
+```r
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
+    facet_wrap(~ Species, ncol=2) + geom_smooth(method="lm", se = FALSE) 
+```
+
+<img src="assets/fig/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+
+Reference: http://docs.ggplot2.org/current/geom_abline.html  
+<b style="color:red;">Note:</b> see the docs for many ways to apply lines!
+
+--- .class #id
+
+## Mid 5: What's my, What's my THEME!
+
+
+
+
+Reference: http://docs.ggplot2.org/current/theme.html  
+<b style="color:red;">More</b> on themes: https://www.r-bloggers.com/ggplot2-themes-examples/
+
+--- .class #id
+
+
+## Mid 6: That's my THEME!
+
+
+
+--- .class #id
+
+## Mid X: Moo!
+Introducing cowplot
+
+
+```r
+# facet_wrap() call's formula: as above, but no dot (go figure)
+plot_grid
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'plot_grid' not found
+```
+
+```r
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point(aes(color=Species)) + 
+    geom_line() + facet_wrap(~ Species, ncol=2)
+```
+
+<img src="assets/fig/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+
+Reference: http://docs.ggplot2.org/current/facet_wrap.html
+
+--- .class #id
+
+## Mid 1: Groups you say
+
+
+
+
+--- .class #id
+
+## Mid 1: Groups you say
+
+
 
 --- .class #id
 
@@ -143,7 +259,6 @@ Why use require() over library()?
 
 
 ```r
-# option A
 isLoadedByLibrary = library(ggplot2); isLoadedByLibrary
 ```
 
@@ -153,7 +268,6 @@ isLoadedByLibrary = library(ggplot2); isLoadedByLibrary
 ```
 
 ```r
-# option B
 isLoadedByRequire = require(ggplot2); isLoadedByRequire
 ```
 
